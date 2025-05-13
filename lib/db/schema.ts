@@ -4,7 +4,7 @@ import {relations} from "drizzle-orm";
 export const files = pgTable("files", {
     id: uuid("id").defaultRandom().primaryKey(),
     //basic file/folder information
-    name: text("name").notNull(),
+    name: text("name").notNull(),    
     path: text("path").notNull(), // document/projects/resume.pdf
     size: integer("size").notNull(),
     type: text("type").notNull(), //"folder" | "file"
@@ -24,7 +24,7 @@ export const files = pgTable("files", {
 
     //Timestamps
     createdAt:timestamp("created_at").notNull().defaultNow(),
-    updatedAt:timestamp("updated_at").notNull().defaultNow(),
+    updatedAt:timestamp("updated_at").notNull().defaultNow(),  
 })
 
 /*
