@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
 import { files } from "@/lib/db/schema";
@@ -56,7 +56,9 @@ export async function DELETE() {
               });
 
               if (searchResults && searchResults.length > 0) {
-                await imagekit.deleteFile(searchResults[0].fileId);
+                if ('fileId' in searchResults[0]) {
+                  await imagekit.deleteFile(searchResults[0].fileId);
+                }
               } else {
                 await imagekit.deleteFile(imagekitFileId);
               }
